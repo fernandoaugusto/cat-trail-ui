@@ -1,0 +1,65 @@
+<div class="form-container">
+  <div class="controls">
+    <label>Start Latitude:
+      <input type="number" [(ngModel)]="startLat" />
+    </label>
+    <label>Start Longitude:
+      <input type="number" [(ngModel)]="startLng" />
+    </label>
+    <label>End Latitude:
+      <input type="number" [(ngModel)]="endLat" />
+    </label>
+    <label>End Logitude:
+      <input type="number" [(ngModel)]="endLng" />
+    </label>
+
+    <label>Speed (Km/h):
+      <input 
+        type="number" 
+        [(ngModel)]="speedKmH"
+        min="1"
+        step="1"
+        (change)="updateSpeed()"
+      />
+    </label>
+    <label class="center-toggle">
+      <input type="checkbox" [(ngModel)]="keepCentered" />
+      Keep Centered
+    </label>
+    <label>
+      <input 
+        type="checkbox" 
+        [(ngModel)]="showTrail" 
+        (change)="updateShowTrail()"
+      />
+      Show Trail
+    </label>
+
+    <button
+      *ngIf="!isStarted && !isFinished"
+      (click)="startAnimation()">
+      🐱 Start
+    </button>
+
+    <button
+      *ngIf="isStarted"
+      (click)="resetToStart()">
+      🔄 Back
+    </button>
+
+    <button
+      *ngIf="isStarted && !isFinished && !isPaused"
+      (click)="togglePause()">
+      ⏸️ Pause
+    </button>
+
+    <button
+      *ngIf="isStarted && !isFinished && isPaused"
+      (click)="togglePause()">
+      ▶️ Play
+    </button>
+    
+  </div>
+</div>
+
+<div id="map"></div>
