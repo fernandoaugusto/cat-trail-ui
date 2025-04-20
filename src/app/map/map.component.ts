@@ -19,6 +19,7 @@ export class MapComponent implements AfterViewInit {
   isStarted = false;
   isPaused = false;
   isFinished = false;
+  isCoordinatesDefined = false;
 
   speedKmH = 5;
 
@@ -199,6 +200,17 @@ export class MapComponent implements AfterViewInit {
         opacity: this.showTrail ? 0.7 : 0,
       });
     }
+  }
+
+  updateCoordinates(): void {
+    this.isCoordinatesDefined = true;
+    this.startPointPopup.setLatLng([this.startLat, this.startLng]);
+    this.endPointPopup.setLatLng([this.endLat, this.endLng]);
+    this.resetToStart();
+  }
+
+  defineCoordinates(): void {
+    this.isCoordinatesDefined = false;
   }
 
   resetToStart(): void {

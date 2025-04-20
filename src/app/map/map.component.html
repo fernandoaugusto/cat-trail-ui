@@ -1,17 +1,44 @@
 <div class="form-container">
   <div class="controls">
     <label>Start Latitude:
-      <input type="number" [(ngModel)]="startLat" />
+      <input 
+        type="number" 
+        [(ngModel)]="startLat" 
+        [readonly]="isCoordinatesDefined" 
+        [ngClass]="{ 'readonly-style': isCoordinatesDefined }"/>
     </label>
     <label>Start Longitude:
-      <input type="number" [(ngModel)]="startLng" />
+      <input 
+        type="number" 
+        [(ngModel)]="startLng" 
+        [readonly]="isCoordinatesDefined" 
+        [ngClass]="{ 'readonly-style': isCoordinatesDefined }"/>
     </label>
     <label>End Latitude:
-      <input type="number" [(ngModel)]="endLat" />
+      <input 
+        type="number" 
+        [(ngModel)]="endLat" 
+        [readonly]="isCoordinatesDefined" 
+        [ngClass]="{ 'readonly-style': isCoordinatesDefined }"/>
     </label>
     <label>End Logitude:
-      <input type="number" [(ngModel)]="endLng" />
+      <input 
+      type="number" 
+      [(ngModel)]="endLng" 
+      [readonly]="isCoordinatesDefined" 
+      [ngClass]="{ 'readonly-style': isCoordinatesDefined }"/>
     </label>
+
+    <button
+      *ngIf="isCoordinatesDefined"
+      (click)="defineCoordinates()">
+      🗺 New Coordinates
+    </button>
+    <button
+      *ngIf="!isCoordinatesDefined"
+      (click)="updateCoordinates()">
+      🗺 Update Coordinates
+    </button>
 
     <label>Speed (Km/h):
       <input 
